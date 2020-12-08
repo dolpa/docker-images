@@ -1,0 +1,21 @@
+plugins {
+    id 'maven-publish'
+}
+
+docker {
+    name 'dolpa/ubuntu:20.04'
+    dockerfile file('Dockerfile')
+    tag 'latest', 'dolpa/ubuntu:latest'
+    tag 'version', 'dolpa/ubuntu:20.04'
+    pull true
+    noCache true
+}
+
+publishing {
+    publications {
+        dockerPublication(MavenPublication) {
+            from components.docker
+            artifactId project.name + "-docker"
+        }
+    }
+}
