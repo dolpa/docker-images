@@ -19,3 +19,4 @@ include 'services:webservice'
 rootProject.name = 'Docker'
 
 include 'images:os:ubuntu:20.04:upgraded'
+include 'images:db:mysql:8.0'
