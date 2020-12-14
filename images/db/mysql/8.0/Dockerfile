@@ -68,6 +68,7 @@ RUN rm -rf /var/run/${service_name}/ && mkdir -p /var/lib/${app}/ /var/run/${ser
 
 # copy default configuration files 
 COPY config/ /etc/mysql/
+RUN chmod -R ugo+r /etc/mysql
 
 # volume 
 VOLUME /var/lib/${app}
