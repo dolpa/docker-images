@@ -50,6 +50,8 @@ task pushAllDockerImages {
 }
 
 buildAllDockerImages.dependsOn('images:os:ubuntu:20.04:upgraded:docker')
+buildAllDockerImages.dependsOn('images:db:mysql:8.0:docker')
+
 
 pushAllDockerImages.dependsOn('images:os:ubuntu:20.04:upgraded:dockerPush')
-
+pushAllDockerImages.dependsOn('images:odb:mysql:8.0:dockerPush')
