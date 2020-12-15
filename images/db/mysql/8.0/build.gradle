@@ -1,0 +1,29 @@
+plugins {
+    id 'maven-publish'
+}
+
+docker {
+    dependsOn build as Task
+    name "dolpa/mysql-server:8.0"
+    dockerfile file('Dockerfile')
+    files "start-mysqld-docker.sh"
+    copySpec.with {
+        from('.') {
+            include 'config/**'
+            into '.'
+        }
+    }
+    tag "-${version}", "dolpa/mysql-server:8.0"
+    tag "-latest", "'dolpa/mysql-server:latest"
+    pull true
+    noCache true
+}
+
+publishing {
+    publications {
+        dockerPublication(MavenPublication) {
+            from components.docker
+            artifactId project.name + "-docker"
+        }
+    }
+}

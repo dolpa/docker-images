@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  mysql-server:
+    image: dolpa/mysql-server:8.0
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    environment: 
+      MYSQL_USER: mysql
+      MYSQL_ROOT_PASSWORD: new-pass
+      MYSQL_DATABASE: testdb
+      MYSQL_PASSWORD: pass12345
+    volumes:
+      - ./mysqldata:/var/lib/mysql/
+    cap_add:
+      - SYS_NICE
